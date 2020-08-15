@@ -6,7 +6,7 @@ import WeatherReport from "./components/weatherReport";
 
 function App() {
   const background =
-    "https://i.imgur.com/rIgX9wA.jpg";
+    "https://images.hdqwalls.com/wallpapers/beautiful-evening-landscape-4k-33.jpg";
   return (
     <div
       className="min-h-screen bg-fixed"
