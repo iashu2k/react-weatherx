@@ -1,94 +1,36 @@
-import React from "react";
-import Popper from "popper.js";
+import React from 'react';
 
-const Dropdown = ({ color }) => {
-  // dropdown props
-  const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
-  const btnDropdownRef = React.createRef();
-  const popoverDropdownRef = React.createRef();
-  const openDropdownPopover = () => {
-    new Popper(btnDropdownRef.current, popoverDropdownRef.current, {
-      placement: "bottom-start"
-    });
-    setDropdownPopoverShow(true);
-  };
-  const closeDropdownPopover = () => {
-    setDropdownPopoverShow(false);
-  };
-  // bg colors
-  let bgColor;
-  color === "white"
-    ? (bgColor = "bg-gray-800")
-    : (bgColor = "bg-" + color + "-500");
-  return (
-    <>
-      <div className="flex flex-wrap">
-        <div className="w-full sm:w-6/12 md:w-4/12 px-4">
-          <div className="relative inline-flex align-middle w-full">
-            <button
-              className={
-                "text-white font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 " +
-                bgColor
-              }
-              style={{ transition: "all .15s ease" }}
-              type="button"
-              ref={btnDropdownRef}
-              onClick={() => {
-                dropdownPopoverShow
-                  ? closeDropdownPopover()
-                  : openDropdownPopover();
-              }}
+const Dropdown = ({label, options, ref}) => {
+  return ( 
+    <div className="px-3 mb-6 md:mb-0">
+            <label
+              className="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2"
+              htmlFor="grid-state"
             >
-              {color === "white" ? "White Dropdown" : color + " Dropdown"}
-            </button>
-            <div
-              ref={popoverDropdownRef}
-              className={
-                (dropdownPopoverShow ? "block " : "hidden ") +
-                (color === "white" ? "bg-white " : bgColor + " ") +
-                "text-base z-50 float-left py-2 list-none text-left rounded shadow-lg mt-1"
-              }
-              style={{ minWidth: "12rem" }}
-            >
-              <a
-                href="#pablo"
-                className={
-                  "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent " +
-                  (color === "white" ? " text-gray-800" : "text-white")
-                }
-                onClick={e => e.preventDefault()}
+              {label}
+            </label>
+            <div className="relative">
+              <select
+                ref={ref}
+                name="duration"
+                className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-state"
               >
-                Action
-              </a>
-              <a
-                href="#pablo"
-                className={
-                  "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent " +
-                  (color === "white" ? " text-gray-800" : "text-white")
-                }
-                onClick={e => e.preventDefault()}
-              >
-                Another action
-              </a>
-              <a
-                href="#pablo"
-                className={
-                  "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent " +
-                  (color === "white" ? " text-gray-800" : "text-white")
-                }
-                onClick={e => e.preventDefault()}
-              >
-                Something else here
-              </a>
-              
-              
+                {options.map(op => <option key={op}>{op}</option>)}
+                
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg
+                  className="fill-current h-4 w-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                </svg>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </>
-  );
-};
-
+   );
+}
+ 
 export default Dropdown;
-
