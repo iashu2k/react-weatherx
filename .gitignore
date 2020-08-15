@@ -4,7 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
-
+/tailwind-default.js
+/.env
 # testing
 /coverage
 
