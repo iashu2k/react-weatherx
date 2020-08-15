@@ -73,7 +73,7 @@ const WeatherReport = (props) => {
           <div className="text-xl font-bold mx-4 text-center mt-16">
             Weather Forcasts
           </div>
-          <Charts />
+          <Charts report={weather} />
         </div>
       </div>
       }
