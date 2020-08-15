@@ -1,21 +1,40 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { LineChart, Line, Legend, XAxis, YAxis, Tooltip } from "recharts";
-
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Charts = ({ report }) => {
   const { register, handleSubmit } = useForm();
   const [dur, setDur] = useState("Hourly");
   const [par, setPara] = useState("temp");
   const { daily, hourly } = report;
-  
-  const dailyData = daily.map(day=> { return {temp: day.temp.day, pressure: day.pressure, humidity: day.humidity, dt: new Date(day.dt *1000).toLocaleDateString("en-US", {month:"short", day:"numeric"}) }});
-  const hourlyData = hourly.map(hour=>{return {temp: hour.temp, pressure: hour.pressure, humidity: hour.humidity, dt: new Date(hour.dt *1000).toLocaleTimeString("en-US", {hour: "numeric", minute:"numeric"})}});
-  const lineColor = {temp: "orange", pressure:"#FBDD7D", humidity: "yellow"};
+
+  const dailyData = daily.map((day) => {
+    return {
+      temp: day.temp.day,
+      pressure: day.pressure,
+      humidity: day.humidity,
+      dt: new Date(day.dt * 1000).toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+      }),
+    };
+  });
+  const hourlyData = hourly.map((hour) => {
+    return {
+      temp: hour.temp,
+      pressure: hour.pressure,
+      humidity: hour.humidity,
+      dt: new Date(hour.dt * 1000).toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "numeric",
+      }),
+    };
+  });
+  const lineColor = { temp: "orange", pressure: "#FBDD7D", humidity: "yellow" };
   const onSubmit = (data) => {
-    console.log(data);
     setPara(data.parameter);
-    setDur(data.duration);    
+    setDur(data.duration);
   };
   return (
     <>
@@ -54,7 +73,7 @@ const Charts = ({ report }) => {
           </div>
           <div className="px-3 mb-6 md:mb-0">
             <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              className="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2"
               htmlFor="grid-state"
             >
               Parameter
@@ -84,18 +103,18 @@ const Charts = ({ report }) => {
           <div className="px-3 mb-6 md:mb-0">
             <button
               type="submit"
-              className="bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
+              className="bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-2 px-2 rounded"
             >
               Okay
             </button>
           </div>
         </form>
       </div>
-      <div className="flex justify-center mt-10">
+      <div className="flex justify-center mt-10 w-max">
         <LineChart
           width={1000}
           height={300}
-          data={dur==="Hourly"?hourlyData:dailyData}
+          data={dur === "Hourly" ? hourlyData : dailyData}
           margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
         >
           <Line
@@ -106,9 +125,13 @@ const Charts = ({ report }) => {
           />
 
           <XAxis dataKey="dt" stroke="white" />
-          
+
           <YAxis stroke="white" />
-          <Tooltip labelStyle={{ color: "#052743" }} itemStyle={{ color: "#2E7C87" }} wrapperStyle={{ borderRadius: "25px" }}/>
+          <Tooltip
+            labelStyle={{ color: "#052743" }}
+            itemStyle={{ color: "#2E7C87" }}
+            wrapperStyle={{ borderRadius: "25px" }}
+          />
           <Legend verticalAlign="top" height={36} />
         </LineChart>
       </div>

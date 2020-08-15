@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 import UpperHeader from "./upperHeader";
 import Card from "./card";
 import Charts from "./charts";
@@ -34,9 +34,10 @@ const WeatherReport = (props) => {
 
   return (
     <>
+      
       { loaded &&
         <div className="py-1">
-        <div className="container mx-auto my-10 rounded-lg min-h-screen bg-transparent p-5 border-2 border-gray-400 shadow-lg text-white">
+        <div className="container mx-auto my-10 rounded-lg min-h-screen bg-transparent text-gray-200">
           <UpperHeader report={weather} />
           
 
@@ -77,7 +78,7 @@ const WeatherReport = (props) => {
         </div>
       </div>
       }
-      
+      { (!loaded) && <div className="min-h-screen flex justify-center items-center"><CircularProgress /></div>}
     </>
   );
 };

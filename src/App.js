@@ -9,7 +9,7 @@ function App() {
     "https://i.imgur.com/rIgX9wA.jpg";
   return (
     <div
-      className="min-h-screen"
+      className="min-h-screen bg-fixed"
       style={{
         backgroundImage: `url("${background}")`,
         backgroundRepeat: "no-repeat",

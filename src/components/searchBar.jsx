@@ -38,6 +38,7 @@ const SearchBar = () => {
   
 
   return (
+    <>
     <div className="flex justify-center items-center min-h-screen">
       <form className="w-1/2" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex items-center py-2">
@@ -80,6 +81,7 @@ const SearchBar = () => {
         />
       </form>
     </div>
+    </>
   );
 };
 
