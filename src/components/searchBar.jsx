@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import GpsFixedSharpIcon from "@material-ui/icons/GpsFixedSharp";
 import Axios from "axios";
 import {useHistory} from "react-router-dom";
+import logo from "../assets/images/logo.png";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -39,8 +40,11 @@ const SearchBar = () => {
 
   return (
     <>
+    
     <div className="flex justify-center items-center min-h-screen">
+    
       <form className="w-1/2" onSubmit={handleSubmit(onSubmit)}>
+      <div><img src={logo} alt="logo" className="rounded-full w-32 shadow-lg border-2 border-white mx-auto mb-4"/></div>
         <div className="flex items-center py-2">
           <input
             className="appearance-none  border-none w-full text-gray-700 p-2 rounded-sm leading-tight focus:outline-none"

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { LineChart, Line, Legend, XAxis, YAxis, Tooltip } from "recharts";
-import CircularProgress from "@material-ui/core/CircularProgress";
+
 
 const Charts = ({ report }) => {
   const { register, handleSubmit } = useForm();
@@ -18,6 +18,10 @@ const Charts = ({ report }) => {
         month: "short",
         day: "numeric",
       }),
+      dew_point: day.dew_point,
+      clouds: day.clouds,
+      wind_speed: day.wind_speed,
+      wind_deg: day.wind_deg
     };
   });
   const hourlyData = hourly.map((hour) => {
@@ -29,10 +33,15 @@ const Charts = ({ report }) => {
         hour: "numeric",
         minute: "numeric",
       }),
+      dew_point: hour.dew_point,
+      clouds: hour.clouds,
+      wind_speed: hour.wind_speed,
+      wind_deg: hour.wind_deg
     };
   });
-  const lineColor = { temp: "orange", pressure: "#FBDD7D", humidity: "yellow" };
+  
   const onSubmit = (data) => {
+    console.log(data);
     setPara(data.parameter);
     setDur(data.duration);
   };
@@ -88,6 +97,10 @@ const Charts = ({ report }) => {
                 <option value="temp">Temperature</option>
                 <option value="pressure">Pressure</option>
                 <option value="humidity">Humidity</option>
+                <option value="dew_point">Dew Point</option>
+                <option value="clouds">Clouds</option>
+                <option value="wind_speed">Wind Speed</option>
+                <option value="wind_deg">Wind Degree</option>
               </select>
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 <svg
@@ -120,7 +133,7 @@ const Charts = ({ report }) => {
           <Line
             type="monotone"
             dataKey={par}
-            stroke={lineColor[par]}
+            stroke="yellow"
             strokeWidth="3"
           />
 
