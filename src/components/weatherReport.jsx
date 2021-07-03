@@ -68,8 +68,7 @@ const WeatherReport = (props) => {
           </div>
 
           <div className="flex justify-around w-max text-sm">
-          <Card name={"Sunrise"} icon={<FiSunrise/>} data={new Date(weather.current.sunrise).toLocaleTimeString("en-US")}/>
-          <Card name={"Sunset"} icon={<FiSunset/>} data={new Date(weather.current.sunset).toLocaleTimeString("en-US")}/>
+          
           </div>
           <div className="text-xl font-bold mx-4 text-center mt-16">
             Weather Forcasts
